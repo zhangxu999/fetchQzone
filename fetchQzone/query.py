@@ -5,7 +5,7 @@ class queryTool(object):
     """docstring for queryTool"""
     def __init__(self):    
         
-        sql_tmpfeed="create table tmp_feed select info,time,userID_id,feedID from fetchQzone_feed limit 5;delete from tmp_feed;"
+        sql_tmpfeed="create  table tmp_feed select info,time,userID_id,feedID from fetchQzone_feed limit 5;delete from tmp_feed;"
         sql_tmpcomment="create table tmp_comment select parent_id,come_id,to_id,info,fetchQzone_comment.time,rootID from fetchQzone_comment limit 5;delete from tmp_comment;"
         sql_tmpnick="create table tmp_nick select guest_id,nick from fetchQzone_nick limit 5;delete from tmp_nick; "
         for x in (sql_tmpfeed,sql_tmpcomment):
@@ -28,7 +28,7 @@ class queryTool(object):
         Result={}
         cursor = connection.cursor()
         if friend==None:
-            sql_feed="insert into tmp_feed select info,time,userID_id,feedID from fetchQzone_feed where userID_id=%s  order by time  desc limit %s,%s ;"%(user,start,num)
+            sql_feed="insert into tmp_feed select * from (select info,time,userID_id,feedID from fetchQzone_feed where userID_id=%s  order by time  desc limit %s,%s)uni ;"%(user,start,num)
             sql_comment=" insert into tmp_comment select parent_id,come_id,to_id,fetchQzone_comment.info,fetchQzone_comment.time,rootID from tmp_feed,fetchQzone_comment where parent_id=feedID  order by IDinFeed "
             sql_nick="insert into tmp_nick select qq,nick from (select distinct  qq from (select  come_id as qq from   tmp_comment union all select to_id as qq from tmp_comment union select userID_id as qq from tmp_feed)uni)uni2,fetchQzone_nick where guest_id=qq group by qq;"
             sql_FeedtoRe="select info,time,userID_id,feedID,nick from tmp_feed join tmp_nick on userID_id=qq;"
