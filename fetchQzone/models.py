@@ -4,7 +4,7 @@ from django.db import models
 class people(models.Model):
 	"""docstring for people"""
 	qq=models.BigIntegerField(primary_key=True);
-	nick=models.CharField(max_length=30)
+	#nick=models.CharField(max_length=30)
 class feed(models.Model):
 	"""docstring for feed"""
 	feedID=models.CharField(max_length=255,primary_key=True);
