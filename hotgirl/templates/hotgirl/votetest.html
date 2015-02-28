@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>我美不美呀……*^__^*</title>
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'icon.ico' %}" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{% static 'hotgirl/css/test4.css' %}"/>
+	<script language='javascript' type="text/javascript" src="{% static 'hotgirl/js/vote3.js' %}"></script>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<div id='head'>
+		<div id='headleft'></div>
+		<div id='top'>
+			<a href="/girl/top">排行榜</a><br>
+			<a href="/girl/qncallback">qncallback</a><br>
+			<a href="/girl/upimage">upimage</a><br>
+			<a href="">qncallback_test2</a><br>
+			<a href="/girl/finnal/">提交毕业设计</a><br>
+			<a href="/girl/finalresualt/">查看大家的选择结果</a><br>
+			<a href="/girl/alltitles/">查看所有题目</a><br>
+			<a href="/girl/genecsv/">生成报表</a><br>
+		</div>
+		
+	</div>
+	<!--<div id='result'  ><strong>我美不美呀，选出最美的我*^_^*……<p></strong></div>-->
+
+	<div onclick="cli(this)" class="pairs" id="left" >
+		<div class="votescore" id="leftvote">点击较好的女孩<br>查看评分</div>
+		<img id='leftimg' imgid="{{ girls.0.id }}" vote="{{girls.0.votes}}" src="{% static girls.0.mainmugshot %}-normal2">
+		<img class="duigou" id='dui1' src="{% static 'hotgirl/duigou.jpg' %}">
+	</div>
+	<div class="pairs" id="right" onclick="cli(this)">
+		<div class="votescore" id="rightvote">点击较好的女孩<br>查看评分</div>
+		<img id='rightimg' imgid="{{girls.1.id }}" vote="{{ girls.1.votes}}"src="{% static girls.1.mainmugshot %}-normal2">
+		<img class="duigou" id='dui2'  src="{% static 'hotgirl/duigou.jpg' %}">
+	</div>
+</body>
+</html>

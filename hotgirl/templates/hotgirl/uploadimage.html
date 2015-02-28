@@ -1,0 +1,18 @@
+<html>
+<head>
+	<title>上传你的女神</title>
+</head>
+<body>
+<form method="post" action="http://upload.qiniu.com/"  enctype="multipart/form-data">
+
+    <input name="x:csrfmiddlewaretoken" type="hidden" value="{{csrftoken}}">
+    <input name="x:location" type="hidden" value="Shanghai">
+    <input name="x:price" type="hidden" value="1500.00">
+    <input name="token" type="hidden" value="{{token}}">
+	<p><label for="desc">描述</label> <input id="desc" name="x:desc" type="text" /></p>
+    
+    <p><label for="image">图像</label> <input id="image" name="file" type="file" /></p>
+    <p><input id='submit' type='submit' value='上传'/></p>
+</form>
+</body>
+</html>

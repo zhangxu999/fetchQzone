@@ -1,0 +1,8 @@
+{% load staticfiles %}
+<head>
+<title>Template_test</title></head>
+<body>
+	{% for p in test %}
+	{{p.id}}&nbsp &nbsp{{p.votes}}&nbsp &nbsp{{p.mainmugshot}}<br>
+	{% endfor %}
+</body>

@@ -1,0 +1,59 @@
+body{
+text-align: center;	
+}
+p{
+	display: inline;
+	background-color: transparent;
+}
+span{
+float:left;
+width:0.7em;
+font-size:400%;
+font-family:algerian,courier;
+line-height:80%;
+}
+ul.disc{
+/*	list-style-type: disc;*/
+list-style: square inside url('eg_arrow.gif');
+	
+}
+ul.circle {
+	list-style-type: circle;
+}
+ul.square{
+	list-style-type: square;
+}
+ul.none{
+	list-style-type: none;
+}
+
+.inner{
+	height: auto;
+	display: inline;
+	border: 5px solid yellow;
+	overflow: hidden;
+}
+div{
+
+	position: relative;
+	padding: 10px;
+	border: 5px solid black;
+	width: auto;
+	height: auto;
+}
+img{
+
+	
+	border: 2px solid green;
+}
+
+/*
+#no32{
+	height: 200px;
+	position: relative;
+	
+	right:148px;
+	bottom: 0px;
+	
+    
+}

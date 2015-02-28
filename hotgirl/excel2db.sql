@@ -1,0 +1,13 @@
+select hotgirl_final.idnum,hotgirl_final.name,hotgirl_titles.title,hotgirl_final.teacher1, hotgirl_titles.title,hotgirl_final.teacher2,hotgirl_titles.title,hotgirl_final.teacher3 from  hotgirl_final, hotgirl_titles where hotgirl_final.title1=hotgirl_titles.idnum AND hotgirl_final.title2=hotgirl_titles.idnum AND hotgirl_final.title3=hotgirl_titles.idnum;
+BEGIN; 
+ALTER TABLE `fetchQzone_people` ( `qq` bigint NOT NULL PRIMARY KEY ) ; 
+CREATE TABLE `fetchQzone_feed` ( `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `feedID` varchar(500) NOT NULL, `userID_id` bigint NOT NULL, `time` bigint NOT NULL, `info` longtext NOT NULL, `commentNum` integer NOT NULL, `likeNum` integer NOT NULL, `visitTime` bigint NOT NULL ) ; 
+ALTER TABLE `fetchQzone_feed` ADD CONSTRAINT `userID_id_refs_qq_89a69edc` FOREIG N KEY (`userID_id`) REFERENCES `fetchQzone_people` (`qq`);
+ CREATE TABLE `fetchQzone_comment` ( `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `IDinFeed` integer NOT NULL, `parent_id` integer NOT NULL, `rootID` integer NOT NULL, `come_id` bigint NOT NULL, `to_id` bigint NOT NULL, `time` bigint NOT NULL, `info` longtext NOT NULL ) ; 
+ ALTER TABLE `fetchQzone_comment` ADD CONSTRAINT `parent_id_refs_id_e7b51c7b` FOR EIGN KEY (`parent_id`) REFERENCES `fetchQzone_feed` (`id`); 
+ ALTER TABLE `fetchQzone_comment` ADD CONSTRAINT `come_id_refs_qq_017cde46` FOREI GN KEY (`come_id`) REFERENCES `fetchQzone_people` (`qq`); 
+ ALTER TABLE `fetchQzone_comment` ADD CONSTRAINT `to_id_refs_qq_017cde46` FOREIGN KEY (`to_id`) REFERENCES `fetchQzone_people` (`qq`); 
+ CREATE INDEX `fetchQzone_feed_7f3a17a1` ON `fetchQzone_feed` (`userID_id`); CREATE INDEX `fetchQzone_comment_410d0aac` ON `fetchQzone_comment` (`parent_id`) ;
+CREATE INDEX `fetchQzone_comment_62fb66a4` ON `fetchQzone_comment` (`come_id`); 
+ CREATE INDEX `fetchQzone_comment_a87046c8` ON `fetchQzone_comment` (`to_id`); 
+ COMMIT;

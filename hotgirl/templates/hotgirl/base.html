@@ -1,0 +1,64 @@
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>
+        {% block title %}
+        
+        {% endblock title%}
+    </title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'icon.ico' %}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{% static 'hotgirl/css/top_search.css' %}">
+    <script type="text/javascript" src="{% static 'hotgirl/js/top.js' %}"></script>
+</head>
+<body>
+    <div id="headtitle">{% block innertitle %}{{params.user}}的说说和评论{% endblock innertitle %}</div>
+    <form>
+        QQ号<input name='user' ><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit"> 搜索</button>
+    </form>
+{% block fenye %}
+    <p id='page'>
+      {% if params.last >= 0 %}
+          <a href="?start={{params.last}}&num={{params.num}}&user={{params.user}}"><span class='nums'>< 上一页</span></a>
+      {% endif %} 
+
+     {% for p in fenye %}
+        {% if p.strong %}
+             <span class="pc" id='thispage'><strong>{{p.value}}</strong></span>
+        {% else %}
+            <a  href="?start={{p.start}}&num={{p.num}}&user={{params.user}}"><span class="pc">{{p.value}}</span></a>
+        {% endif  %}
+     {% endfor %}
+            <a  href="?start={{params.next}}&num={{params.num}}&user={{params.user}}"><span class='nums'>下一页></span></a>
+    </p>
+{% endblock fenye %}
+
+{% block feed %}
+    {% for fe in feeds %}
+      <div class="feed">
+        <h2>{{fe.info|safe}}</h2><h5>
+        &nbsp;&nbsp;&nbsp;&nbsp;来自：<a href="http://ncwugirl.duapp.com/fetchQzone/search2?user={{fe.userID_id}}">{{fe.userID_id}}</a>&nbsp;&nbsp;时间:{{fe.time}}&nbsp;&nbsp;{% block detail %}<a href="http://ncwugirl.duapp.com/fetchQzone/onefeed?feedID={{fe.feedID}}">详细</a>{% endblock detail %}</h5>
+    </div>
+            {% for comm in comments %}
+                {% if comm.parent == fe.feedID  %}
+                <div class="comment">
+                {% if comm.rootID == -1 %}
+                <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://ncwugirl.duapp.com/fetchQzone/search2?user={{comm.come}}">{{comm.come}}</a>
+                {% else %}
+                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://ncwugirl.duapp.com/fetchQzone/search2?user={{comm.come}}">{{comm.come}}</a>
+                    回复&nbsp;
+                    <a href="http://ncwugirl.duapp.com/fetchQzone/search2?user={{comm.to}}">{{comm.to}}</a>
+                {% endif %}
+                {{comm.info|safe}}
+                </div>
+                {%endif%}
+            {% endfor %}
+      </div>
+    {% empty %}
+    <div id="headtitle">木有了~~~~看完了/(ㄒoㄒ)/~~*^_^* ……  *^_^*</div>
+    {% endfor %}
+{% endblock feed %}
+</body>
+</html>

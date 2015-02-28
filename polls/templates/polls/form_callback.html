@@ -1,0 +1,12 @@
+{% load staticfiles %}
+<!Doctype html>
+<head>
+	<title>你的基本信息</title>
+</head>
+<body>
+	<h1>我的基本信息</h1>
+	{% for item in packege %}
+	<p>{{ item}}</p>
+	{% endfor %}
+	<img src="{% static img %}" />
+</body>

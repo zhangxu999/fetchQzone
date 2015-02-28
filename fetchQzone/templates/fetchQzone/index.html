@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<html>
+<head>
+    <title>
+        {% block title %}
+        fetchQzone主页
+        {% endblock title%}
+    </title> 
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'icon.ico' %}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{% static 'fetchQzone/top_search.css' %}">
+    <style type="text/css">
+em{
+    background-color: #FFD39B;
+}
+    </style>
+</head>
+<body>
+{% block search %}
+   
+    <form method="GET" action="/fetchQzone" >
+    <h2> &nbsp;&nbsp;QQ号:<input name='user' ><br><br></h2>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit"> 搜索</button>
+    </form>
+    {% endblock search %}
+    <div class="top">
+    <div >
+        <h3>发说说最多TOP5:<BR><h3>
+    {% for qq,cnt,nick in feedtop %}
+    &nbsp;&nbsp;<a href="fetchQzone?user={{qq}}">{{nick}}（{{cnt}}）</a><BR><BR>
+    {% endfor %}
+    </div>
+    <div >
+    <h3>评论最多TOP5:<BR><h3>
+    {% for qq,cnt,nick in commenttop %}
+    &nbsp;&nbsp;<a href="fetchQzone?user={{qq}}">{{nick}}（{{cnt}}）</a><BR><BR>
+    {% endfor  %}
+    </div>
+    <div>
+    <h3>朋友最多TOP5：<BR><h3>
+    {% for  qq,cnt,nick in peopletop %}
+    &nbsp;&nbsp;<a href="fetchQzone?user={{qq}}">{{nick}}（{{cnt}}）</a><BR><BR>
+    {% endfor %}
+    </div>
+</div>
+</body>
+</html>

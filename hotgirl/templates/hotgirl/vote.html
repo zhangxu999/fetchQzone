@@ -1,0 +1,20 @@
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="static/hotgirl/css/vote.css">
+	<script type="text/javascript" href="static/hotgirl/js/vote.js"></script>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<div id='head'>
+		<div id='headleft'></div>
+		<div id='user'><a href="{% userprofile %}">{% user %}</a></div>
+	</div>
+	<div id='reslut'>哪个更好看？</div>
+	{% for image in images %}
+	<div class="first">
+		<img src="{% image %}">
+
+		<img id='duigou' src="duigou.jpg">
+	</div>
+	<% endfor %>
+</body>

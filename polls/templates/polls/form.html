@@ -1,0 +1,10 @@
+{% if form.is_multipart %}
+<form enctype="multipart/form-data" action="/polls/form/" method="post">
+{% else %}
+<form action="/polls/form/" method="post">
+{% endif %}
+{% csrf_token %}
+{{form.as_p}}
+<input type="submit" Value="Submit"/>
+    
+</form>

@@ -1,0 +1,7 @@
+{% extends "fetchQzone/base.html" %}
+{% block title %}
+    说说和评论
+{% endblock title %}
+ {%  block discribe %}
+    <em>{{params.user_nick|default:params.user}}&nbsp;&nbsp;</em>与<em>&nbsp;{{params.friend_nick|default:params.friend}}&nbsp;</em>相互评论及说说:
+{% endblock discribe %}

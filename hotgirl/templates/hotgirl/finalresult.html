@@ -1,0 +1,25 @@
+<head>
+	<meta charset='UTF-8'>
+	<title>147班结果</title>
+</head>
+<body>
+	<a href="/girl/finnal/" >提交毕设题目</a>&nbsp;&nbsp;
+    <a href="/girl/finalresualt/">查看选择结果</a>&nbsp;&nbsp;
+    <a href="/girl/alltitles/">所有题目及编号</a>&nbsp;&nbsp;
+    <a href="/girl/genecsv/">生成报表</a><br>
+	<h1>毕业设计题目选择结果</h1>
+	<p>
+	<a href="/girl/finalresualt?classes=2011147">147班</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="/girl/finalresualt?classes=2011148">148班</a>&nbsp;&nbsp;
+	<a href="/girl/finalresualt?classes=2011147"></a>&nbsp;&nbsp;
+	</p>
+	{% for final in finals %}
+	<span >
+	<strong >{{final.idnum}}&nbsp;&nbsp;{{final.name}}<br></strong>
+	{{final.title1}}&nbsp;&nbsp;{{final.teacher1}}&nbsp;&nbsp;{{final.realtitle1}}<br>
+	{{final.title2}}&nbsp;&nbsp;{{final.teacher2}}&nbsp;&nbsp;{{final.realtitle2}}<br>
+	{{final.title3}}&nbsp;&nbsp;{{final.teacher3}}&nbsp;&nbsp;{{final.realtitle3}}<br>
+	<p>
+	</span>
+	{% endfor %}
+</body>

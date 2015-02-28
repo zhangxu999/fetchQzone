@@ -1,0 +1,40 @@
+body{
+	text-align: center;
+}
+
+.duigou{
+
+	position: relative;
+	right: 65px;
+	height: 60px;
+	opacity: 0.5;
+}
+
+img{
+	max-height: 100px;
+}
+
+.pairs{
+	display: inline;
+	height: 100%;
+	overflow: auto;
+	padding: 0px;
+	border: 0px solid red;
+
+
+}
+#head{
+	height: 30px;
+	
+}
+#user{
+	text-align: right;
+	background-color: blue;
+	text-decoration: none;
+}
+#result{
+	font-size: 30px;
+	font-family: 楷体;
+
+}
+#

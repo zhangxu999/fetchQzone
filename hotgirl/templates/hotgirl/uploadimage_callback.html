@@ -1,0 +1,12 @@
+{% load staticfiles %}
+<!Doctype html>
+<head>
+	<title>你的基本信息</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'hotgirl/css/uploadimage.css' %}">
+</head>
+<body>
+	<h3>您的女神：</h3>
+	<img src="{% static img %}" />
+	<p>{{desc}}</p>
+
+</body>

@@ -1,0 +1,54 @@
+
+<head>
+	<meta charset='UTF-8'>
+	<title>毕业设计管理系统</title>
+</head>
+<body>
+    <a href="/girl/finnal/" >提交毕设题目</a>&nbsp;&nbsp;
+    <a href="/girl/finalresualt/">查看选择结果</a>&nbsp;&nbsp;
+    <a href="/girl/alltitles/">所有题目及编号</a>&nbsp;&nbsp;
+    <a href="/girl/genecsv/">生成报表</a><br>
+	<h1>毕业设计题目管理系统</h1>
+	<form method="POST" action="/girl/procfinals/">
+	<p>学号
+    	<input  name="idnum" type="text" value=' '>
+    	姓名
+    	<input  name="yourname" type="text" value=' '>
+    </p>
+    <div >
+        <ul>
+            <li>
+                <p><strong style="background:red">一定不要把学号填错，否则会覆盖别人的数据</strong></p>
+            </li>
+            <li>
+                如果要修改自己的题目，重新输入所有内容就可以了
+            </li>
+        </ul>
+    </div>
+    <p>毕设1编号或题目
+    	<input  name="title1" type="text" value='校内题目填题目编号'>
+        指导老师
+        <input name="teacher1" type="text" value=" ">
+        
+    </p>
+    <p>毕设2编号或题目
+    	<input  name="title2" type="text" value='自定题目直接填论文题目 '>
+        指导老师
+        <input name="teacher2" type="text" value=" ">
+    </p>
+    <p>毕设3编号或题目
+    	<input  name="title3" type="text" value=' 同上'>
+        指导老师
+        <input name="teacher3" type="text" value=' '>
+    </p>
+    	<input id="submit" type="submit" value="提  交">
+	</form>
+    <p>&nbsp;&nbsp;</p>
+    <p>&nbsp;&nbsp;</p>
+    <p>&nbsp;&nbsp;</p>
+    <p>&nbsp;&nbsp;</p>
+    <p>&nbsp;&nbsp;</p>
+    <p>&nbsp;&nbsp;</p>
+    <p>&nbsp;&nbsp;</p>
+    <p>可能会有小毛病。有大问题，找张旭13140025637</p>
+</body>

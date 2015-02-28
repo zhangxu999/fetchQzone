@@ -1,0 +1,13 @@
+body{
+	text-align: center;
+}
+
+first{
+	display: inline;
+}
+#head{
+	height: 50px;
+}
+#user{
+	text-align: right;
+}

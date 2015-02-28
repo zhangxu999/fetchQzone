@@ -1,0 +1,19 @@
+
+<!-- saved from url=(0035)http://127.0.0.1:8000/girl/upimage/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>上传你的女神</title>
+</head>
+<body>
+<form method="post" action="/girl/qncallback/" >
+{% csrf_token %}
+ 
+    <input name="name" type="hidden" value="22233key">
+    <input name="bucket" type="hidden" value="contact147">
+   <input name="mimeType" type="hidden" value="jpg">
+	<p><label for="desc">描述</label> <input id="desc" name="desc" type="text" value='I feel good'></p>
+    
+    
+    <p><input id="submit" type="submit" value="上传"></p>
+</form>
+
+</body></html>

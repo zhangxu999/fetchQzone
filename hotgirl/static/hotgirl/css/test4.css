@@ -1,0 +1,55 @@
+#result{
+	font-size: 50px;
+	font-family: 楷体;
+}
+body{
+	text-align: center;
+}
+
+.duigou{
+
+	position: relative;
+	right: 65px;
+	height: 60px;
+	opacity: 0.5;
+	border-radius: 10px;
+}
+.votescore{
+	font-size: 20px;
+	font-family: 微软雅黑;
+}
+img{
+	height: 300px;
+	border-radius: 20px;
+	
+}
+div.votescore{
+	display: inline-block;
+
+	text-align: left;
+	text-align: center;
+}
+.pairs{
+	display: inline;
+	height: 100%;
+	overflow: auto;
+	padding: 0px;
+	border: 0px solid red;
+
+
+}
+#top{
+	height: 40px;
+	width: 120px;
+	font-family: 微软雅黑;
+	font-size: 20px;
+	background-color: #FF9999;
+	text-align: right;
+	text-decoration: none;
+}
+#head{
+	height: 30px;
+	
+}
+
+

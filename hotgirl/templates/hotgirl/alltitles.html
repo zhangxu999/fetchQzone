@@ -1,0 +1,22 @@
+<head>
+	<meta charset='UTF-8'>
+	<title>所有可选题目</title>
+</head>
+<body>
+	<a href="/girl/finnal/" >提交毕设题目</a>&nbsp;&nbsp;
+    <a href="/girl/finalresualt/">查看选择结果</a>&nbsp;&nbsp;
+    <a href="/girl/alltitles/">所有题目及编号</a>&nbsp;&nbsp;
+    <a href="/girl/genecsv/">生成报表</a><br>
+	<h1>所有可选题目及编号</h1>
+	<p>
+	<a href="/girl/alltitles/?begin=1&end=93">通信</a>&nbsp;&nbsp;
+	<a href="/girl/alltitles/?begin=94&end=218">电子</a>&nbsp;&nbsp;
+	<a href="/girl/alltitles/?begin=219&end=319">计算机</a>&nbsp;&nbsp;
+    </p>
+	{% for title in alltitles %}
+	<span >
+	<strong >{{title.idnum}}&nbsp;&nbsp;</strong>
+	{{title.teacher}}&nbsp;&nbsp;{{title.title}}<br>
+	</span>
+	{% endfor %}
+</body>

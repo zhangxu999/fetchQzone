@@ -1,0 +1,40 @@
+{% load staticfiles %}
+
+<html>
+<head>
+	<title>TOP！！—最漂亮的女孩</title>
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'icon.ico' %}" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{% static 'hotgirl/css/top.css' %}">
+	<script type="text/javascript" src="{% static 'hotgirl/js/top.js' %}"></script>
+</head>
+<body>
+	<div id="headtitle">最漂亮的女孩 Top Top Top</div>
+<p id='page'>
+	{% if params.last >= 0 %}
+	<a href="?start={{params.last}}&num={{params.num}}"><span class='nums'><上一页</span></a>
+	{% endif %}	
+
+	{% for p in fenye %}
+	{% if p.strong %}
+	<span class="pc" id='thispage'><strong>{{p.value}}</strong></span>
+	{% else %}
+	<a  href="?start={{p.start}}&num={{p.num}}"><span class="pc">{{p.value}}</span></a>
+	{% endif  %}
+	{% endfor %}
+	{% if girls|length == params.num %}
+	<a  href="?start={{params.next}}&num={{params.num}}"><span class='nums'>下一页></span></a>
+	{% endif %}
+</p>
+	{% for girl in girls %}
+	<div class="eachgirl" id="{{girl.id}}">
+		<div class="desc">
+		  <div class="leftbar"><div class='top'>ID:</div><div class='bottom'>得票:</div></div>
+		  <div class="rightbar"><div class='top'>{{girl.id}}</div><div class='bottom'>{{girl.votes}}</div></div>
+	    </div>
+		<div class="mainmugshot"><img src="{% static girl.mainmugshot %}-normal2"></div>
+	</div>
+	{% empty %}
+	<div id="headtitle">木有美女啦~~~~看完了/(ㄒoㄒ)/~~*^_^* ……  *^_^*</div>
+	{% endfor %}
+</body>
+</html>
