@@ -31,6 +31,7 @@ function convertTime (now,time) {
     if(cut<daymillisec)
     {
         if (now.getDate()==time.getDate()) 
+
             return HourMin;
         else
             return '昨天'+' '+HourMin;
@@ -38,6 +39,7 @@ function convertTime (now,time) {
     else if (cut<daymillisec*2) 
     {
         if (now.getDate()-time.getDate()==1) 
+
             return '昨天'+' '+HourMin;
         else 
             return MonthDayHM;

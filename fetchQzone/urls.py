@@ -6,4 +6,5 @@ urlpatterns=patterns('',
     url(r'^$',views.search),
     url(r'^onefeed/$',views.feedDetail),
     url(r'^nick/$',views.getnick),
+
     )

@@ -8,6 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'fetchQzone.views.index', name='home'),
+
     # url(r'^mysite/', include('mysite.foo.urls')),
 
      #Uncomment the admin/doc line below to enable admin documentation:
