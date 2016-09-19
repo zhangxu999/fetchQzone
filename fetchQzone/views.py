@@ -6,15 +6,17 @@ from fetchQzone.models import comment,feed,people
 from django.db import connection
 
 from django import forms
+from datetime import datetime
 import copy
 import time
 import json
-import urllib2
+import urllib
+datetime_format = "%Y-%m-%d %H:%M:%S"
 # Create your views here.
 def upload(request):
     
     shuo=request.POST['shuo']
-    shuo=urllib2.unquote(shuo)
+    shuo=urllib.parse.unquote(shuo)
     shuo=json.loads(shuo)
     
     print(shuo['feed'][1])
@@ -28,16 +30,18 @@ def upload(request):
     for x in shuo['feed']:
         try:
             peo=people(qq=int(x['userID']))
-            fe=feed(feedID=x['feedID'],info=x['info'],likeNum=int(x['likeNum']),time=int(x['time']),userID=peo,visitTime=int(x['visitTime']),commentNum=int(x['commentNum']))
+            fe=feed(feedID=x['feedID'],info=x['info'],likeNum=int(x['likeNum']),time=datetime.strptime(x['time'],datetime_format),userID=peo,visitTime=datetime.strptime(x['visitTime'],datetime_format),commentNum=int(x['commentNum']))
             fe.save()
-        except :
+        except Exception as e:
             print("error in save feed")
+            raise e
 
     for x in shuo['comment']:
         fe=feed(feedID=x['parent'])
         peo_come=people(qq=int(x['from']))
         peo_to=people(qq=int(x['to']))
-        comm=comment(IDinFeed=x['IDinFeed'],parent=fe,come=peo_come,to=peo_to,rootID=x['rootID'],time=int(x['time']),info=x['info'])
+        print(x['time'])
+        comm=comment(IDinFeed=x['IDinFeed'],parent=fe,come=peo_come,to=peo_to,rootID=x['rootID'],time=datetime.strptime(x['time'],datetime_format),info=x['info'])
         comm.save()
     return HttpResponse('OKKKKK')
 def search(request):
@@ -49,7 +53,7 @@ def search(request):
         num=int(request.GET['num'])
         pagenum=num*10
     fenye=[]
-    for x in xrange(10):
+    for x in range(10):
         a={}
         a['start']=start-(start%pagenum)+x*num
         a['num']=num

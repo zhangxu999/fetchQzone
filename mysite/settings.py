@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 # Django settings for mysite project.
 import platform
 DEBUG = True
@@ -10,10 +11,10 @@ ADMINS = (
 MANAGERS = ADMINS
 local={
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'test',                      # Or path to database file if using sqlite3.
+        'NAME': 'fetchQzone',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'root',
-        'PASSWORD': 'zxrsebn7090',
+        'PASSWORD': 'z',
         'HOST': '127.0.0.1',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '3306',                      # Set to empty string for default.
     }
@@ -136,13 +137,13 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls',
+  #  'polls',
     'fetchQzone',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'hotgirl',
+   # 'hotgirl',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
