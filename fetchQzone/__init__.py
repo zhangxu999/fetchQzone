@@ -1,4 +1,4 @@
-from query import queryTool
+from fetchQzone.query import queryTool
 
 querytool=queryTool()
 jscssurl=""

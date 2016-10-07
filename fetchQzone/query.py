@@ -1,4 +1,4 @@
-from models import people,comment,feed,nick
+from fetchQzone.models import people,comment,feed,nick
 from django.db import connection
 import types
 import MySQLdb
