@@ -1,3 +1,4 @@
+
 from fetchQzone.models import people,comment,feed,nick
 from django.db import connection
 import types
@@ -8,13 +9,11 @@ class queryTool(object):
         cursor = connection.cursor()
         sql_tmpfeed="create table tmp_feed select info,time,userID_id,feedID,nick from fetchQzone_feed,fetchQzone_nick limit 5;delete from tmp_feed;"
         sql_tmpcomment="create table tmp_comment select parent_id,come_id,to_id,info,fetchQzone_comment.time,rootID from fetchQzone_comment limit 5;delete from tmp_comment;"
-
         for x in (sql_tmpfeed,sql_tmpcomment):
             try:
                 cursor.execute(x)
             except :
                 pass
-    #cursor = connection.cursor()
     def validate(self,user="not num",friend=1,start=1,num=1):
         if type(user)!=types.IntType and type(user)!=types.LongType:
             return False
@@ -58,14 +57,12 @@ class queryTool(object):
             #self.insertToTable("tmp_feed",cursor.fetchall())
             cursor.execute(sql_comment)
             #self.insertToTable("tmp_comment",cursor.fetchall())
-            
 
             cursor.execute(sql_FeedtoRe)
             Result["feeds"]=cursor.fetchall()
             cursor.execute(sql_CommenttoRe)
             Result["comments"]=cursor.fetchall()
         else:
-
             sql_comment=" CREATE TEMPORARY TABLE tmp_comment select parent_id,come_id,to_id,info,time,rootID from fetchQzone_comment where (come_id=%s and to_id=%s) OR (come_id=%s and to_id=%s ) order by parent_id,IDinFeed "%(user,friend,friend,user)
             sql_feed=" CREATE TEMPORARY TABLE tmp_feed  SELECT fe.info,UNIX_TIMESTAMP(fe.`time`),userID_id,feedID, ni.`nick` come_nick FROM  fetchQzone_feed fe JOIN tmp_comment    ON  parent_id=feedID JOIN fetchQzone_nick ni ON guest_id=userID_id group by feedID ORDER BY userid_id, fe.`time` DESC LIMIT %s,%s ;"%(start,num)
             sql_CommenttoRe="select parent_id,come_id,to_id,tmp_comment.info,tmp_comment.time,rootID,(select nick from fetchQzone_nick where guest_id=come_id limit 1) as come_nick,(select nick from fetchQzone_nick where  guest_id=to_id  limit 1) as to_nick from tmp_comment,tmp_feed where parent_id=feedID order by feedID;"
@@ -93,6 +90,7 @@ class queryTool(object):
        # sql_comment="select distinct parent_id,come_id,to_id,info,fetchQzone_comment.time,rootID from fetchQzone_comment where parent_id='%s' order by IDinFeed "% feedID
         sql_CommenttoRe="select  parent_id,come_id,to_id,info,time,rootID,(select nick from fetchQzone_nick where guest_id=come_id limit 1) AS come_nick,(select nick from fetchQzone_nick where guest_id=to_id limit 1) AS to_nick from fetchQzone_comment where parent_id='%s' order by IDinFeed"% feedID
 
+
         cursor = connection.cursor()
         cursor.execute(sql_CommenttoRe)
         Result["comments"]=cursor.fetchall()        
@@ -100,8 +98,6 @@ class queryTool(object):
         Result["feeds"]=cursor.fetchall()
         cursor.close()
         return Result
-        
-
     def getNick(self,guest_id,host_id=0):
         try:
             ni=nick.objects.filter(guest_id=guest_id)[0].nick
@@ -151,8 +147,3 @@ class queryTool(object):
         cursor=connection.cursor()
         cursor.execute(sql)
         return cursor.fetchall()
-
-
-
-
-

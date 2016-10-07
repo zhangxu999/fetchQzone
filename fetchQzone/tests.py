@@ -18,4 +18,3 @@ class QueryTests(TestCase):
         self.assertEqual(qu.validate(mm),False)
 
     
-    

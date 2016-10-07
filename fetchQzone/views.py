@@ -197,3 +197,4 @@ def intimacy(request):
     else:
         nick=querytool.getNick(user)
         return render(request,"fetchQzone/intimacy.html",{"user":user,"nick":nick})
+
