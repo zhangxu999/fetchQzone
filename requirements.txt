@@ -1,3 +1,0 @@
-django==1.5.5
-MySQL-python
-qiniu==7.0.1
