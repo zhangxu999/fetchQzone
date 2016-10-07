@@ -8,11 +8,14 @@ function showTime (argument) {
     now=new Date();
     for(var i=0;i<times.length;i++)
     {
-        time=new Date(parseInt(times[i].textContent));
+        time=new Date(parseInt(times[i].textContent*1000));
         times[i].textContent=convertTime(now,time);
     }
 }
 function convertTime (now,time) {
+    if (time=="Invalid Date")
+        return '&^%%&';
+    
     var daymillisec=86400000;
     cut=now.getTime()-time.getTime();
     hour=time.getHours();
@@ -26,18 +29,18 @@ function convertTime (now,time) {
         min='0'+time.getMinutes();
      }
     HourMin=hour+':'+min;
-    MonthDayHM=(time.getMonth()+1)+'月'+(time.getDay()+1)+'日  '+HourMin;
+    MonthDayHM=(time.getMonth()+1)+'月'+time.getDate()+'日  '+HourMin;
     try{
     if(cut<daymillisec)
     {
-        if (now.getDay()==time.getDay()) 
+        if (now.getDate()==time.getDate()) 
             return HourMin;
         else
             return '昨天'+' '+HourMin;
     }
     else if (cut<daymillisec*2) 
     {
-        if (now.getDay()-time.getDay()==1) 
+        if (now.getDate()-time.getDate()==1) 
             return '昨天'+' '+HourMin;
         else 
             return MonthDayHM;

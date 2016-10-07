@@ -1,0 +1,17 @@
+{% load staticfiles %}
+<html>
+<head>
+    <title>发说说，，写评论的&nbsp;  时间段统计分析</title>
+    <script src="{%  static 'fetchQzone/chart.js' %}"></script>
+</head>
+<body>
+    <BR>
+    <div id="user" value="{{user}}" ></div>
+
+    <a href="/fetchQzone/?user={{user}}"><strong>{{nick}}</strong> </a>的亲密程度统计分析
+        <BR>
+    <canvas id="myChart" width="1200" height="400"></canvas>
+</body>
+    <script src="{%  static 'fetchQzone/intimacy.js' %}"></script>
+
+</html>

@@ -1,5 +1,4 @@
 {% load staticfiles %}
-
 <html>
 <head>
     <title>
@@ -8,33 +7,51 @@
         {% endblock title%}
     </title> 
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'icon.ico' %}" media="screen" />
-    <link rel="stylesheet" type="text/css" href="{% static 'hotgirl/css/top_search.css' %}">
-    <script type="text/javascript" src="{% static 'hotgirl/basic.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'fetchQzone/top_search.css' %}">
+    <style type="text/css">
+em{
+    background-color: #FFD39B;
+}
+    </style>
+    <script type="text/javascript" src="{% static 'fetchQzone/basic.js' %}"></script>
 </head>
 <body>
-    <div id="headtitle">{% block innertitle %}{{params.user}}的说说和评论{% endblock innertitle %}</div>
+    <div id="headtitle">{% block innertitle %}{{params.user_nick}}的说说和评论{% endblock innertitle %}</div>
     {% block search %}
     
     <form>
         &nbsp;&nbsp;QQ号:<input name='user' ><br><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit"> 搜索</button>
     </form>
-
     {% endblock search %}
+     {% block commonFriends %}
+    {% endblock commonFriends %}
     {% block friend %}
-    <h4>&nbsp;&nbsp;<a href="/fetchQzone/search2?user={{params.user}}">{{params.user}}</a>与以下同学互动较多:<br></h4>
-        {% for qq,cnt in friend %}
+    <h4>&nbsp;&nbsp;<a href="?user={{params.user}}">{{params.user_nick}}</a>与以下同学互动较多:<br></h4>
+        {% for qq,cnt,nick in friend %}
         &nbsp;&nbsp;&nbsp;&nbsp;
             {% if qq == params.friend  %}
-                <strong>{{qq}}({{cnt}})</strong>
+                <strong>{{nick|default:qq}}({{cnt}})</strong>
             {% else %}
-            <a href="?user={{params.user}}&friend={{qq}}">{{qq}}({{cnt}})</a>
+            <a href="?user={{params.user}}&friend={{qq}}">{{nick|default:qq}}({{cnt}})</a>
+            <!--http://user.qzone.qq.com/{{qq}}-->
             {% endif %}
             {% if forloop.counter|divisibleby:"5" %}
             <br><br>
             {% endif %}
         {% endfor %}
+
+            <br>
     {% endblock friend %}
+     
+     {% block secrela %}
+    {% endblock secrela %}
+    {% block timeanaly %}
+    {% endblock timeanaly %}
+    {%  block discribe %}
+    {% endblock discribe %}
+  
+
 {% block fenye %}
     <p id='page'>
       {% if params.last >= 0 %}
@@ -53,21 +70,21 @@
 {% endblock fenye %}
 
 {% block feed %}
-    {% for info,times,userID_id,feedID in feeds %}
+    {% for info,times,userID_id,feedID,nick in feeds %}
       <div class="feed">
         <h2>{{info|safe}}</h2><h5>
-        &nbsp;&nbsp;&nbsp;&nbsp;来自：<a href="/fetchQzone/search2?user={{userID_id}}">{{userID_id}}</a>&nbsp;&nbsp;时间:<div class='times' style='display: inline-block'>{{times}}</div>&nbsp;&nbsp;{% block detail %}<a href="/fetchQzone/onefeed?feedID={{feedID}}">详细</a>{% endblock detail %}</h5>
+        &nbsp;&nbsp;&nbsp;&nbsp;来自：<a href="?user={{userID_id}}">{{nick}}</a>&nbsp;&nbsp;时间:<div class='times' style='display: inline-block'>{{times}}</div>&nbsp;&nbsp;{% block detail %}<a href="/fetchQzone/onefeed?feedID={{feedID}}">详细</a>{% endblock detail %}</h5>
     </div>
-            {% for parent,come,to,info,timesss,rootID in comments %}
+            {% for parent,come,to,info,timesss,rootID,come_nick,to_nick in comments %}
                 {% if parent == feedID  %}
                 <div class="comment">
                 {% if rootID == -1 %}
                 <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/fetchQzone/search2?user={{come}}">{{come}}</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="?user={{come}}">{{come_nick|default:come}}</a>
                 {% else %}
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/fetchQzone/search2?user={{come}}">{{come}}</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="?user={{come}}">{{come_nick|default:come}}</a>
                     回复&nbsp;
-                    <a href="/fetchQzone/search2?user={{to}}">{{to}}</a>
+                    <a href="?user={{to}}">{{to_nick|default:to }}</a>
                 {% endif %}
                 {{info|safe}}
                 </div>
@@ -78,5 +95,23 @@
     <div id="headtitle">木有了~~~~看完了/(ㄒoㄒ)/~~*^_^* ……  *^_^*</div>
     {% endfor %}
 {% endblock feed %}
+<BR><BR>
+{% block fenyebottom %}
+    <p id='page'>
+      {% if params.last >= 0 %}
+          <a href="?start={{params.last}}&num={{params.num}}&user={{params.user}}&friend={{params.friend}}"><span class='nums'><上一页</span></a>
+      {% endif %} 
+
+     {% for p in fenye %}
+        {% if p.strong %}
+             <span class="pc" id='thispage'><strong>{{p.value}}</strong></span>
+        {% else %}
+            <a  href="?start={{p.start}}&num={{p.num}}&user={{params.user}}&friend={{params.friend}}"><span class="pc">{{p.value}}</span></a>
+        {% endif  %}
+     {% endfor %}
+            <a  href="?start={{params.next}}&num={{params.num}}&user={{params.user}}&friend={{params.friend}}"><span class='nums'>下一页></span></a>
+    </p>
+{% endblock fenyebottom %}
+<BR><BR>
 </body>
 </html>

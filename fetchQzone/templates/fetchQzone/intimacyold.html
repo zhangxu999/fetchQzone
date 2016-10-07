@@ -1,0 +1,21 @@
+{% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'fetchQzone/top_search.css' %}">
+
+
+    {% block friend %}
+    <h4>&nbsp;&nbsp;<a href="?user={{user}}">{{nick}}</a>与他们比较亲密（括号内是亲密程度）：<br></h4>
+        {% for qq,cnt,nick in friend %}
+        &nbsp;&nbsp;&nbsp;&nbsp;
+            {% if qq == params.friend  %}
+                <strong>{{nick|default:qq}}({{cnt}})</strong>
+            {% else %}
+            <a href="/fetchQzone/?user={{user}}&friend={{qq}}">{{nick|default:qq}}({{cnt}})</a>
+            <!--http://user.qzone.qq.com/{{qq}}-->
+            {% endif %}
+            {% if forloop.counter|divisibleby:"5" %}
+            <br><br>
+            {% endif %}
+        {% endfor %}
+
+            <br>
+    {% endblock friend %}

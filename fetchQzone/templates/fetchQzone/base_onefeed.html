@@ -6,7 +6,6 @@
 {% block fenye %}
 
 {% endblock fenye %}
-
 {% block detail %}
 
 {% endblock detail %}
@@ -18,3 +17,29 @@
 {% block friend %}
 
 {% endblock friend %}
+{% block feed %}
+    {% for info,times,userID_id,feedID,nick in feeds %}
+      <div class="feed">
+        <h2>{{info|safe}}</h2><h5>
+        &nbsp;&nbsp;&nbsp;&nbsp;来自：<a href="/fetchQzone?user={{userID_id}}">{{nick}}</a>&nbsp;&nbsp;时间:<div class='times' style='display: inline-block'>{{times}}</div>&nbsp;&nbsp;</h5>
+    </div>
+            {% for parent,come,to,info,timesss,rootID,come_nick,to_nick in comments %}
+                {% if parent == feedID  %}
+                <div class="comment">
+                {% if rootID == -1 %}
+                <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/fetchQzone?user={{come}}">{{come_nick|default:come}}</a>
+                {% else %}
+                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/fetchQzone?user={{come}}">{{come_nick|default:come}}</a>
+                    回复&nbsp;
+                    <a href="/fetchQzone?user={{to}}">{{to_nick|default:to }}</a>
+                {% endif %}
+                {{info|safe}}
+                </div>
+                {%endif%}
+            {% endfor %}
+      </div>
+    {% empty %}
+    <div id="headtitle">木有了~~~~看完了/(ㄒoㄒ)/~~*^_^* ……  *^_^*</div>
+    {% endfor %}
+{% endblock feed %}

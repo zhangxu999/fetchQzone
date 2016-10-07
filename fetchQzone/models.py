@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-  
 from django.db import models
 
 # Create your models here.
@@ -10,7 +9,7 @@ class feed(models.Model):
 	feedID=models.CharField(max_length=255,primary_key=True);
 	userID=models.ForeignKey(people);
 	time=models.DateTimeField();
-	info=models.TextField();
+	info=models.TextField(null=True,blank=True);
 	commentNum=models.IntegerField();
 	likeNum=models.IntegerField();
 	visitTime=models.DateTimeField();
@@ -23,4 +22,9 @@ class comment(models.Model):
 	come=models.ForeignKey(people,related_name='come');
 	to=models.ForeignKey(people,related_name='to');
 	time=models.DateTimeField();
-	info=models.TextField();
+	info=models.TextField(null=True,blank=True);
+class nick(models.Model):
+	"""de"""
+	host=models.ForeignKey(people,related_name='host');
+	guest=models.ForeignKey(people,related_name='guest');
+	nick=models.CharField(max_length=30);

@@ -2,3 +2,18 @@
 {% block title %}
     说说和评论
 {% endblock title %}
+ {%  block discribe %}
+    <h4><em>{{params.user_nick}}</em>&nbsp;&nbsp;发出的说说:</h4>
+{% endblock discribe %}
+{% block secrela %}
+    <a href="/fetchQzone/secrela?user={{params.user}}">查看二度人脉</a>
+{% endblock secrela %}
+
+{% block timeanaly %}
+<br>
+<br>
+<a href="/fetchQzone/timeanaly?user={{params.user}}">查看他的活动时间统计</a>
+{% endblock timeanaly %}
+{% block friend %}
+<a href="intimacy/?user={{params.user}}">查看亲密度排行</a><br><br>
+{% endblock friend %}

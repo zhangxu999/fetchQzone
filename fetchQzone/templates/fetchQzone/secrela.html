@@ -1,0 +1,16 @@
+ {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'fetchQzone/top_search.css' %}">
+ <h4>&nbsp;&nbsp;<a href="?user={{params.user}}">{{params.user_nick}}</a>
+            二度人脉：<br></h4>
+ {%for qq,nick in secrela %}
+               &nbsp;&nbsp;&nbsp;&nbsp; <a href="/fetchQzone/comfri?user1={{qq}}&user2={{user}}">{{nick|default:qq}}</a>&nbsp;&nbsp;<BR>
+            <!--http://user.qzone.qq.com/{{qq}}-->
+                {% if forloop.counter|divisibleby:"5" %}
+                    <br><br>
+                {% endif %}
+                <br>
+            {% empty %}
+    <div id="headtitle">木有二度人脉~~/(ㄒoㄒ)/~~*^_^* ……  *^_^*</div>
+            {% endfor %}
+
+
